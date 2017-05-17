@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GetWord</string>
+
+    <string name="change_to">Changed to this</string>
 </resources>
