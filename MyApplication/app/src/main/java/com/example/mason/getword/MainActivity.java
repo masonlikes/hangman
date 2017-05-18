@@ -6,15 +6,59 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Random;
 
+public class MainActivity extends AppCompatActivity {
+    private Random rand = new Random();
     private int guesses = 5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Button button = (Button) findViewById(R.id.word_button);
         setButtons();
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+
+                //change the top text
+                changeText();
+            }
+
+        });
+    }
+
+    private void changeText(){
+        setContentView(R.layout.activity_main);
+        final TextView textViewToChange = (TextView) findViewById(R.id.word_text);
+        textViewToChange.setText(returnRandomWord());
+    }
+
+    private String returnRandomWord(){
+        String randomWord = "";
+        try {
+
+            InputStream is = getAssets().open("Words.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+
+            String fileContent = new String(buffer, "UTF-8");
+            String[] contentArray = fileContent.split(",");
+            randomWord = contentArray[rand.nextInt(contentArray.length)];
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return randomWord;
     }
 
     private boolean checkLetter(String str){
