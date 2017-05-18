@@ -10,12 +10,4 @@
     android:gravity="center_horizontal"
     tools:context="com.example.mason.getword.SelfDeletingButton"
     tools:showIn="@layout/activity_self_deleting_button">
-
-
-    <!--<LinearLayout-->
-        <!--android:id="@+id/keyboard"-->
-        <!--android:orientation="vertical"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"></LinearLayout>-->
-
 </LinearLayout>

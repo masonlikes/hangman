@@ -18,12 +18,22 @@ import java.util.List;
 public class SelfDeletingButton extends AppCompatActivity {
 
     TextView used_letters;
-
     List<String> used;
+    LinearLayout container, TopRow, MidRow, BotRow;
+    Button resetbtn;
+
+    final String[]
+            TopLetters = { "A","B","C","D","E","F","G","H","I" },
+            MidLetters = { "J","K","L","M","N","O","P","Q","R" },
+            BotLetters = { "S","T","U","V","W","X","Y","Z" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        generateKeyboard();
+    }
+
+    public void generateKeyboard(){
         used_letters = new TextView(this);
         used_letters.setText(getApplicationContext().getString(R.string.used_letters, "None!"));
         used = new ArrayList<String>();
@@ -37,13 +47,10 @@ public class SelfDeletingButton extends AppCompatActivity {
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
         lp.gravity = Gravity.CENTER;
-        String[] TopLetters = { "A","B","C","D","E","F","G","H","I" };
-        String[] MidLetters = { "J","K","L","M","N","O","P","Q","R" };
-        String[] BotLetters = { "S","T","U","V","W","X","Y","Z" };
 
-        LinearLayout TopRow = new LinearLayout(this);
-        LinearLayout MidRow = new LinearLayout(this);
-        LinearLayout BotRow = new LinearLayout(this);
+        TopRow = new LinearLayout(this);
+        MidRow = new LinearLayout(this);
+        BotRow = new LinearLayout(this);
         TopRow.setOrientation(LinearLayout.HORIZONTAL);
         MidRow.setOrientation(LinearLayout.HORIZONTAL);
         BotRow.setOrientation(LinearLayout.HORIZONTAL);
@@ -75,13 +82,23 @@ public class SelfDeletingButton extends AppCompatActivity {
             BotRow.addView(btn);
         }
 
-        LinearLayout container = (LinearLayout)findViewById(R.id.container);
+        container = (LinearLayout)findViewById(R.id.container);
 
         container.addView(used_letters);
 
         container.addView(TopRow);
         container.addView(MidRow);
         container.addView(BotRow);
+
+        resetbtn = new Button(this);
+        resetbtn.setText(R.string.reset);
+        resetbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                generateKeyboard();
+            }
+        });
+        container.addView(resetbtn);
     }
 
     public void setupKeyboardButton(Button btn){
