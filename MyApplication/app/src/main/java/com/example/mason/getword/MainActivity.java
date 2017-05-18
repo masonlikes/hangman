@@ -21,20 +21,17 @@ public class MainActivity extends AppCompatActivity {
         setButtons();
 
         button.setOnClickListener(new View.OnClickListener() {
-
             @Override
-
             public void onClick(View v) {
 
                 //change the top text
                 changeText();
             }
-
         });
     }
 
     private void changeText(){
-        setContentView(R.layout.activity_main);
+       // setContentView(R.layout.activity_main);
         final TextView textViewToChange = (TextView) findViewById(R.id.word_text);
         textViewToChange.setText(returnRandomWord());
     }
