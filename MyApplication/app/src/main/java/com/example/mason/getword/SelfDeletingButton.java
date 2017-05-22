@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ public class SelfDeletingButton extends AppCompatActivity {
 
     Random rand = new Random();
     TextView used_letters;
+    String wordToGuess;
     TextView word_to_guess;
     List<String> used;
     LinearLayout container, TopRow, MidRow, BotRow;
@@ -46,12 +46,26 @@ public class SelfDeletingButton extends AppCompatActivity {
 
 
     private void makeWordToGuess(){
+        wordToGuess = getRandomWord();
         setContentView(R.layout.activity_self_deleting_button);
         word_to_guess = new TextView(this);
-        word_to_guess.setText(getRandomWord());
+        word_to_guess.setText(wordToGuess);
         container = (LinearLayout)findViewById(R.id.container);
 
         container.addView(word_to_guess);
+
+        makeLetterLabels(wordToGuess);
+    }
+
+    private void makeLetterLabels(String str){
+        TextView letter = null;
+        LinearLayout layout = new LinearLayout(this);
+        for(int i = 0; i < str.length(); i++){
+            letter = new TextView(this);
+            letter.setText(str.charAt(i)+"");
+            layout.addView(letter);
+        }
+        container.addView(layout);
     }
 
     public void generateKeyboard(){
