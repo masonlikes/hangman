@@ -139,7 +139,9 @@ public class SelfDeletingButton extends AppCompatActivity {
         get_word_button.setText(R.string.get_new_word);
         get_word_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {makeBoth();
+            public void onClick(View v) {
+                makeBoth();
+                resetBody();
             }
         });
         container.addView(get_word_button);
