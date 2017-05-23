@@ -11,26 +11,61 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class SelfDeletingButton extends AppCompatActivity {
 
+    Random rand = new Random();
     TextView used_letters;
+    String wordToGuess;
+    TextView word_to_guess;
     List<String> used;
     LinearLayout container, TopRow, MidRow, BotRow;
     Button resetbtn;
+    Button get_word_button;
 
     final String[]
-            TopLetters = { "A","B","C","D","E","F","G","H","I" },
-            MidLetters = { "J","K","L","M","N","O","P","Q","R" },
-            BotLetters = { "S","T","U","V","W","X","Y","Z" };
+            TopLetters = { "Q","W","E","R","T","Y","U","I","O","P" },
+            MidLetters = { "A","S","D","F","G","H","J","K","L" },
+            BotLetters = { "Z","X","C","V","B","N","M" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        makeBoth();
+    }
+
+    private void makeBoth(){
+        makeWordToGuess();
         generateKeyboard();
+    }
+
+
+    private void makeWordToGuess(){
+        wordToGuess = getRandomWord();
+        setContentView(R.layout.activity_self_deleting_button);
+        word_to_guess = new TextView(this);
+        word_to_guess.setText(wordToGuess);
+        container = (LinearLayout)findViewById(R.id.container);
+
+        container.addView(word_to_guess);
+
+        makeLetterLabels(wordToGuess);
+    }
+
+    private void makeLetterLabels(String str){
+        TextView letter = null;
+        LinearLayout layout = new LinearLayout(this);
+        for(int i = 0; i < str.length(); i++){
+            letter = new TextView(this);
+            letter.setText(str.charAt(i)+"");
+            layout.addView(letter);
+        }
+        container.addView(layout);
     }
 
     public void generateKeyboard(){
@@ -38,7 +73,6 @@ public class SelfDeletingButton extends AppCompatActivity {
         used_letters.setText(getApplicationContext().getString(R.string.used_letters, "None!"));
         used = new ArrayList<String>();
 
-        setContentView(R.layout.activity_self_deleting_button);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -95,10 +129,18 @@ public class SelfDeletingButton extends AppCompatActivity {
         resetbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                generateKeyboard();
+                makeBoth();
             }
         });
         container.addView(resetbtn);
+        get_word_button = new Button(this);
+        get_word_button.setText(R.string.get_new_word);
+        get_word_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {makeBoth();
+            }
+        });
+        container.addView(get_word_button);
     }
 
     public void setupKeyboardButton(Button btn){
@@ -117,12 +159,46 @@ public class SelfDeletingButton extends AppCompatActivity {
     private class KeyboardListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            v.setVisibility(View.GONE);
-            Toast.makeText(v.getContext(), " (" + ((Button) v).getText() + ") Button destroyed!", Toast.LENGTH_SHORT).show();
+            CharSequence btnLetter = ((Button) v).getText();
 
-            used.add(""+((Button) v).getText());
-            used_letters.setText(getApplicationContext().getString(R.string.used_letters,TextUtils.join(", ", used)));
+            if(!checkLetter(btnLetter.toString())) {
+                v.setVisibility(View.GONE);
+                Toast.makeText(v.getContext(), " (" + btnLetter + ") Button destroyed!", Toast.LENGTH_SHORT).show();
+
+                used.add("" + ((Button) v).getText());
+                used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
+            }
         }
+    }
+
+    private boolean checkLetter(String str){
+        return word_to_guess.getText().toString().toUpperCase().contains(str);
+    }
+
+    private String getRandomWord(){
+        String randomWord = "";
+        try {
+
+            InputStream is = getAssets().open("Words.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+
+            String fileContent = new String(buffer, "UTF-8");
+            String[] contentArray = fileContent.split(",");
+            randomWord = contentArray[rand.nextInt(contentArray.length)];
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return randomWord;
+    }
+
+    private void changeText(){
+        word_to_guess.setText(getRandomWord());
     }
 
     private void updateHeight(View view) {
