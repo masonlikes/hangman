@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -130,6 +131,7 @@ public class SelfDeletingButton extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 makeBoth();
+                resetBody();
             }
         });
         container.addView(resetbtn);
@@ -167,6 +169,7 @@ public class SelfDeletingButton extends AppCompatActivity {
 
                 used.add("" + ((Button) v).getText());
                 used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
+                revealBodyPart();
             }
         }
     }
@@ -207,4 +210,39 @@ public class SelfDeletingButton extends AppCompatActivity {
         view.setVisibility(visibility);
     }
 
+    ImageView image;
+    int hangmanCounter = 1;
+    private void resetBody(){
+        hangmanCounter = 1;
+        image = (ImageView) findViewById(R.id.imageView1);
+        image.setImageResource(R.drawable.hangman1);
+    }
+
+    private void revealBodyPart(){
+        image = (ImageView) findViewById(R.id.imageView1);
+        if(hangmanCounter == 1){
+            image.setImageResource(R.drawable.hangman2);
+            hangmanCounter++;
+        }
+        else if(hangmanCounter == 2){
+            image.setImageResource(R.drawable.hangman3);
+            hangmanCounter++;
+        }
+        else if(hangmanCounter == 3){
+            image.setImageResource(R.drawable.hangman4);
+            hangmanCounter++;
+        }
+        else if(hangmanCounter == 4){
+            image.setImageResource(R.drawable.hangman5);
+            hangmanCounter++;
+        }
+        else if(hangmanCounter == 5){
+            image.setImageResource(R.drawable.hangman6);
+            hangmanCounter++;
+        }
+        else {
+            image.setImageResource(R.drawable.hangman7);
+            hangmanCounter++;
+        }
+    }
 }
