@@ -10,4 +10,10 @@
     android:gravity="center_horizontal"
     tools:context="com.example.mason.getword.SelfDeletingButton"
     tools:showIn="@layout/activity_self_deleting_button">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="267dp"
+        android:layout_height="264dp"
+        android:src="@drawable/hangman1" />
 </LinearLayout>
