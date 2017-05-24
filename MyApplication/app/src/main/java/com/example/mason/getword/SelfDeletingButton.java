@@ -61,8 +61,11 @@ public class SelfDeletingButton extends AppCompatActivity {
         TextView letter = null;
         LinearLayout layout = new LinearLayout(this);
         for(int i = 0; i < str.length(); i++){
+            String upperStr = str.toUpperCase();
             letter = new TextView(this);
             letter.setText(str.charAt(i)+"");
+            letter.setId(upperStr.charAt(i));
+            letter.setVisibility(View.INVISIBLE);
             layout.addView(letter);
         }
         container.addView(layout);
@@ -167,6 +170,10 @@ public class SelfDeletingButton extends AppCompatActivity {
 
                 used.add("" + ((Button) v).getText());
                 used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
+            }
+            else{
+                    char visibleChar = ((Button) v).getText().charAt(0);
+                    findViewById(visibleChar).setVisibility(View.VISIBLE);
             }
         }
     }
