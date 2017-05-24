@@ -177,8 +177,13 @@ public class SelfDeletingButton extends AppCompatActivity {
                 revealBodyPart();
             }
             else{
-                    char visibleChar = ((Button) v).getText().charAt(0);
-                    findViewById(visibleChar).setVisibility(View.VISIBLE);
+                char visibleChar = ((Button) v).getText().charAt(0);
+                findViewById(visibleChar).setVisibility(View.VISIBLE);
+                v.setVisibility(View.GONE);
+                Toast.makeText(v.getContext(), " (" + btnLetter + ") Button destroyed!", Toast.LENGTH_SHORT).show();
+
+                used.add("" + ((Button) v).getText());
+                used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
             }
         }
     }
