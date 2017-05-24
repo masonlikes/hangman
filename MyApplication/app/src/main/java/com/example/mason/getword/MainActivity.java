@@ -8,63 +8,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.CharArrayReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.Random;
-import java.util.Set;
+
+import com.example.mason.getword.WordDifficulty;
 
 public class MainActivity extends AppCompatActivity {
     private Random rand = new Random();
-
-    final static String ZipfsLaw = "etaoinshrdlcumwfgypbvkjxqz";
-
-    private static int getCharOccurrences(String word, char c){
-        int lastIndex = 0;
-        int count = 0;
-
-        while(lastIndex != -1){
-
-            lastIndex = word.indexOf(c,lastIndex);
-
-            if(lastIndex != -1){
-                count ++;
-                lastIndex++;
-            }
-        }
-        return count;
-    }
-
-    public static double getWordDiff(String word){
-        word = word.replace(" ", "").toLowerCase();
-        char[] letters = word.toCharArray();
-        //creating a truncated word so I don't have duplicate letters for the loop
-        Set<Character> charSet = new LinkedHashSet<Character>();
-        for(char c : letters){
-            charSet.add(c);
-        }
-        StringBuilder sb = new StringBuilder();
-        for(char c : charSet){
-            sb.append(c);
-        }
-        String truncatedWord = sb.toString();
-        double wordDiff = 0.0f;
-        for(char c : truncatedWord.toCharArray()){
-            //letter difficulty = ((Word Length / Letter occurrences) * (letter's Zipfs Law Rank)) * % of alphabet not used
-            double lettDiff = (((float)word.length() / (float)getCharOccurrences(word, c)) * (1+ZipfsLaw.indexOf(c))) * ((double)(ZipfsLaw.length() - truncatedWord.length())/(double)ZipfsLaw.length());
-            //word difficulty += letter difficulty
-            wordDiff += lettDiff;
-        }
-
-        //wordDiff = Sum of all Letter difficulties * (% of unique letters in word)
-        wordDiff = wordDiff * ((double)truncatedWord.length()/(double)word.length());
-
-        wordDiff = Math.floor(wordDiff);
-
-        return wordDiff;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void changeText(){
         final TextView textViewToChange = (TextView) findViewById(R.id.word_text);
-        textViewToChange.setText(returnRandomWord());
+        String randomWord = returnRandomWord();
+        textViewToChange.setText(randomWord);
+        double randoWordDiff = WordDifficulty.getWordDiff(randomWord);
     }
 
     private String returnRandomWord(){
