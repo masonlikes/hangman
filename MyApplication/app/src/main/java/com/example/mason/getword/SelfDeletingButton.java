@@ -20,6 +20,8 @@ import java.util.Random;
 
 public class SelfDeletingButton extends AppCompatActivity {
 
+    final static int letter_id_base = 10000;
+
     Random rand = new Random();
     TextView used_letters;
     String wordToGuess;
@@ -65,7 +67,8 @@ public class SelfDeletingButton extends AppCompatActivity {
             String upperStr = str.toUpperCase();
             letter = new TextView(this);
             letter.setText(str.charAt(i)+"");
-            letter.setId(upperStr.charAt(i));
+//            letter.setId(upperStr.charAt(i));
+            letter.setId(letter_id_base+i);
             letter.setVisibility(View.INVISIBLE);
             layout.addView(letter);
         }
@@ -167,24 +170,27 @@ public class SelfDeletingButton extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             CharSequence btnLetter = ((Button) v).getText();
-
             if(!checkLetter(btnLetter.toString())) {
-                v.setVisibility(View.GONE);
-                Toast.makeText(v.getContext(), " (" + btnLetter + ") Button destroyed!", Toast.LENGTH_SHORT).show();
-
-                used.add("" + ((Button) v).getText());
-                used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
                 revealBodyPart();
             }
             else{
                 char visibleChar = ((Button) v).getText().charAt(0);
-                findViewById(visibleChar).setVisibility(View.VISIBLE);
-                v.setVisibility(View.GONE);
-                Toast.makeText(v.getContext(), " (" + btnLetter + ") Button destroyed!", Toast.LENGTH_SHORT).show();
-
-                used.add("" + ((Button) v).getText());
-                used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
+                String wurd = word_to_guess.getText().toString().toUpperCase();
+                int i = wurd.indexOf(visibleChar);
+                while(i != -1){
+                    findViewById(letter_id_base+i).setVisibility(View.VISIBLE);
+                    i = wurd.indexOf(visibleChar, i+1);
+                }
             }
+            Toast.makeText(v.getContext(), " (" + btnLetter + ") Button destroyed!", Toast.LENGTH_SHORT).show();
+            used.add(((Button) v).getText().toString());
+            used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
+            v.setVisibility(View.GONE);
+
+            //see if they won
+            Toast.makeText(getApplicationContext(), "CHECK WIN CONDITIONS", Toast.LENGTH_SHORT);
+
+
         }
     }
 
@@ -210,6 +216,13 @@ public class SelfDeletingButton extends AppCompatActivity {
             ex.printStackTrace();
             return null;
         }
+
+
+//        final TextView textViewToChange = (TextView) findViewById(R.id.word_text);
+//        String randomWord = returnRandomWord();
+//        textViewToChange.setText(randomWord);
+        double randoWordDiff = WordDifficulty.getWordDiff(randomWord);
+        Toast.makeText(getApplicationContext(), "WordDiff: "+randoWordDiff, Toast.LENGTH_SHORT).show();
 
         return randomWord;
     }

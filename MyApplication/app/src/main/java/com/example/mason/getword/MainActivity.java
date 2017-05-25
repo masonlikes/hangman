@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         String randomWord = returnRandomWord();
         textViewToChange.setText(randomWord);
         double randoWordDiff = WordDifficulty.getWordDiff(randomWord);
+        Toast.makeText(getApplicationContext(), "WordDiff: "+randoWordDiff, Toast.LENGTH_SHORT);
+//        Toast.ma
     }
 
     private String returnRandomWord(){
