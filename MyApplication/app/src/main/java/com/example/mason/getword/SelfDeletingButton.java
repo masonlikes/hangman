@@ -1,5 +1,6 @@
 package com.example.mason.getword;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -164,6 +165,10 @@ public class SelfDeletingButton extends AppCompatActivity {
                 }else{
                     Toast.makeText(v.getContext(), " No more hints available ", Toast.LENGTH_SHORT).show();
                 }
+
+                if(gameIsOver()){
+                    gameOverScreen();
+                }
             }
         });
 
@@ -231,8 +236,20 @@ public class SelfDeletingButton extends AppCompatActivity {
             //see if they won
             Toast.makeText(getApplicationContext(), "CHECK WIN CONDITIONS", Toast.LENGTH_SHORT);
 
-
+            if(gameIsOver()){
+                gameOverScreen();
+            }
         }
+    }
+
+    private void gameOverScreen(){
+        Intent intent = new Intent(this, GameOverActivity.class);
+
+        startActivity(intent);
+    }
+
+    private boolean gameIsOver(){
+        return wordToGuess.equals(letterLabelsToString()) || hangmanCounter == 6;
     }
 
     private void makeLetterVisible(String c){
