@@ -237,7 +237,6 @@ public class SelfDeletingButton extends AppCompatActivity {
     }
 
     private void fadeLetters(View v){
-        Toast.makeText(v.getContext(), " (" + ((Button) v).getText() + ") Button destroyed!", Toast.LENGTH_SHORT).show();
         used.add(((Button) v).getText().toString());
         used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
         v.setEnabled(false);
