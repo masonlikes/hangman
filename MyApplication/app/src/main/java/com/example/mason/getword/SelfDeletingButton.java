@@ -229,6 +229,9 @@ public class SelfDeletingButton extends AppCompatActivity {
             v.setVisibility(View.GONE);
 
             //see if they won
+            if(checkForLoss() == true){
+                Toast.makeText(v.getContext(), "You lose!", Toast.LENGTH_SHORT).show();
+            }
             Toast.makeText(getApplicationContext(), "CHECK WIN CONDITIONS", Toast.LENGTH_SHORT);
 
 
@@ -321,5 +324,9 @@ public class SelfDeletingButton extends AppCompatActivity {
             image.setImageResource(R.drawable.hangman7);
             hangmanCounter++;
         }
+    }
+
+    private boolean checkForLoss(){
+        return (hangmanCounter == 7);
     }
 }
