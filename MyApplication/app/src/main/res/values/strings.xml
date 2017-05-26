@@ -5,4 +5,6 @@
     <string name="hint">Hint</string>
     <string name="used_letters">Used Letters: %1$s</string>
     <string name="title_activity_self_deleting_button">SelfDeletingButton</string>
+    <string name="game_over">Game Over!</string>
+    <string name="play_again">Play Again?</string>
 </resources>

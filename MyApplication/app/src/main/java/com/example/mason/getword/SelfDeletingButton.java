@@ -1,5 +1,6 @@
 package com.example.mason.getword;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -164,6 +165,10 @@ public class SelfDeletingButton extends AppCompatActivity {
                 }else{
                     Toast.makeText(v.getContext(), " No more hints available ", Toast.LENGTH_SHORT).show();
                 }
+
+                if(gameIsOver()){
+                    gameOverScreen();
+                }
             }
         });
 
@@ -192,12 +197,9 @@ public class SelfDeletingButton extends AppCompatActivity {
             letter = wordToGuess.charAt(rand.nextInt(wordToGuess.length()));
             strLetter = letter+"";
         }while (used.contains(strLetter.toUpperCase()));
-        Button faux = (Button) container.findViewById(strLetter.toUpperCase().charAt(0)+keyboard_id_base);
+        Button holder = (Button) container.findViewById(strLetter.toUpperCase().charAt(0)+keyboard_id_base);
         makeLetterVisible(strLetter.toUpperCase());
-        Toast.makeText(v.getContext(), " (" + faux.getText().toString() + ") Button destroyed!", Toast.LENGTH_SHORT).show();
-        used.add(strLetter.toUpperCase());
-        used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
-        faux.setVisibility(View.GONE);
+        fadeLetters(holder);
     }
 
     public void setupKeyboardButton(Button btn){
@@ -223,16 +225,31 @@ public class SelfDeletingButton extends AppCompatActivity {
             else{
                 makeLetterVisible(((Button) v).getText().toString());
             }
-            Toast.makeText(v.getContext(), " (" + btnLetter + ") Button destroyed!", Toast.LENGTH_SHORT).show();
-            used.add(((Button) v).getText().toString());
-            used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
-            v.setVisibility(View.GONE);
+            fadeLetters(v);
 
             //see if they won
             Toast.makeText(getApplicationContext(), "CHECK WIN CONDITIONS", Toast.LENGTH_SHORT);
 
-
+            if(gameIsOver()){
+                gameOverScreen();
+            }
         }
+    }
+
+    private void fadeLetters(View v){
+        used.add(((Button) v).getText().toString());
+        used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
+        v.setEnabled(false);
+    }
+
+    private void gameOverScreen(){
+        Intent intent = new Intent(this, GameOverActivity.class);
+
+        startActivity(intent);
+    }
+
+    private boolean gameIsOver(){
+        return wordToGuess.equals(letterLabelsToString()) || hangmanCounter == 7;
     }
 
     private void makeLetterVisible(String c){
