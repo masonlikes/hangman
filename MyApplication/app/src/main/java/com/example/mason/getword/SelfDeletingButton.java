@@ -18,9 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static android.R.attr.id;
+import static com.example.mason.getword.R.id.word_text;
+
 public class SelfDeletingButton extends AppCompatActivity {
 
     final static int letter_id_base = 10000;
+    final static int keyboard_id_base = 20000;
 
     Random rand = new Random();
     TextView used_letters;
@@ -28,8 +32,8 @@ public class SelfDeletingButton extends AppCompatActivity {
     TextView word_to_guess;
     List<String> used;
     LinearLayout container, TopRow, MidRow, BotRow;
-    Button resetbtn;
-    Button get_word_button;
+    Button reset_button;
+    Button hint_button;
 
     final String[]
             TopLetters = { "Q","W","E","R","T","Y","U","I","O","P" },
@@ -63,6 +67,7 @@ public class SelfDeletingButton extends AppCompatActivity {
     private void makeLetterLabels(String str){
         TextView letter = null;
         LinearLayout layout = new LinearLayout(this);
+        layout.setId(' '+letter_id_base);
         for(int i = 0; i < str.length(); i++){
             String upperStr = str.toUpperCase();
             letter = new TextView(this);
@@ -107,18 +112,21 @@ public class SelfDeletingButton extends AppCompatActivity {
         for(i = 0; i < TopLetters.length; i++){
             btn = new Button(this, null, android.R.attr.buttonStyleSmall);
             btn.setText(TopLetters[i]);
+            btn.setId(TopLetters[i].charAt(0)+keyboard_id_base);
             setupKeyboardButton(btn);
             TopRow.addView(btn);
         }
         for(i = 0; i < MidLetters.length; i++){
             btn = new Button(this, null, android.R.attr.buttonStyleSmall);
             btn.setText(MidLetters[i]);
+            btn.setId(MidLetters[i].charAt(0)+keyboard_id_base);
             setupKeyboardButton(btn);
             MidRow.addView(btn);
         }
         for(i = 0; i < BotLetters.length; i++){
             btn = new Button(this, null, android.R.attr.buttonStyleSmall);
             btn.setText(BotLetters[i]);
+            btn.setId(BotLetters[i].charAt(0)+keyboard_id_base);
             setupKeyboardButton(btn);
             BotRow.addView(btn);
         }
@@ -131,26 +139,65 @@ public class SelfDeletingButton extends AppCompatActivity {
         container.addView(MidRow);
         container.addView(BotRow);
 
-        resetbtn = new Button(this);
-        resetbtn.setText(R.string.reset);
-        resetbtn.setOnClickListener(new View.OnClickListener() {
+        LinearLayout ll = new LinearLayout(this);
+
+        reset_button = new Button(this);
+        hint_button = new Button(this);
+
+        reset_button.setText(R.string.reset);
+        hint_button.setText(R.string.hint);
+
+        reset_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 makeBoth();
                 resetBody();
             }
         });
-        container.addView(resetbtn);
-        get_word_button = new Button(this);
-        get_word_button.setText(R.string.get_new_word);
-        get_word_button.setOnClickListener(new View.OnClickListener() {
+        hint_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                makeBoth();
-                resetBody();
+                String currWord = letterLabelsToString();
+                boolean equal = wordToGuess.equals(currWord);
+                if(!equal) {
+                    giveHint(v);
+                }else{
+                    Toast.makeText(v.getContext(), " No more hints available ", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        container.addView(get_word_button);
+
+        ll.addView(reset_button);
+        ll.addView(hint_button);
+        container.addView(ll);
+    }
+
+    public String letterLabelsToString(){
+        String word = "";
+        LinearLayout ll = (LinearLayout) container.findViewById(' '+letter_id_base);
+        TextView holder = null;
+        for(int i = 0; i < ll.getChildCount(); i++){
+            holder = (TextView)ll.getChildAt(i);
+            if(holder.getVisibility() != View.INVISIBLE) {
+                word += holder.getText().toString();
+            }
+        }
+        return word;
+    }
+
+    private void giveHint(View v){
+        char letter;
+        String strLetter;
+        do {
+            letter = wordToGuess.charAt(rand.nextInt(wordToGuess.length()));
+            strLetter = letter+"";
+        }while (used.contains(strLetter.toUpperCase()));
+        Button faux = (Button) container.findViewById(strLetter.toUpperCase().charAt(0)+keyboard_id_base);
+        makeLetterVisible(strLetter.toUpperCase());
+        Toast.makeText(v.getContext(), " (" + faux.getText().toString() + ") Button destroyed!", Toast.LENGTH_SHORT).show();
+        used.add(strLetter.toUpperCase());
+        used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
+        faux.setVisibility(View.GONE);
     }
 
     public void setupKeyboardButton(Button btn){
@@ -174,13 +221,7 @@ public class SelfDeletingButton extends AppCompatActivity {
                 revealBodyPart();
             }
             else{
-                char visibleChar = ((Button) v).getText().charAt(0);
-                String wurd = word_to_guess.getText().toString().toUpperCase();
-                int i = wurd.indexOf(visibleChar);
-                while(i != -1){
-                    findViewById(letter_id_base+i).setVisibility(View.VISIBLE);
-                    i = wurd.indexOf(visibleChar, i+1);
-                }
+                makeLetterVisible(((Button) v).getText().toString());
             }
             Toast.makeText(v.getContext(), " (" + btnLetter + ") Button destroyed!", Toast.LENGTH_SHORT).show();
             used.add(((Button) v).getText().toString());
@@ -191,6 +232,15 @@ public class SelfDeletingButton extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "CHECK WIN CONDITIONS", Toast.LENGTH_SHORT);
 
 
+        }
+    }
+
+    private void makeLetterVisible(String c){
+        String wurd = word_to_guess.getText().toString().toUpperCase();
+        int i = wurd.indexOf(c);
+        while(i != -1){
+            findViewById(letter_id_base+i).setVisibility(View.VISIBLE);
+            i = wurd.indexOf(c, i+1);
         }
     }
 
