@@ -199,7 +199,7 @@ public class SelfDeletingButton extends AppCompatActivity {
         }while (used.contains(strLetter.toUpperCase()));
         Button faux = (Button) container.findViewById(strLetter.toUpperCase().charAt(0)+keyboard_id_base);
         makeLetterVisible(strLetter.toUpperCase());
-        Toast.makeText(v.getContext(), " (" + faux.getText().toString() + ") Button destroyed!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(v.getContext(), " (" + faux.getText().toString() + ") Button destroyed!", Toast.LENGTH_SHORT).show();
         used.add(strLetter.toUpperCase());
         used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
         faux.setVisibility(View.GONE);
@@ -228,7 +228,7 @@ public class SelfDeletingButton extends AppCompatActivity {
             else{
                 makeLetterVisible(((Button) v).getText().toString());
             }
-            Toast.makeText(v.getContext(), " (" + btnLetter + ") Button destroyed!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(v.getContext(), " (" + btnLetter + ") Button destroyed!", Toast.LENGTH_SHORT).show();
             used.add(((Button) v).getText().toString());
             used_letters.setText(getApplicationContext().getString(R.string.used_letters, TextUtils.join(", ", used)));
             v.setVisibility(View.GONE);
@@ -249,7 +249,7 @@ public class SelfDeletingButton extends AppCompatActivity {
     }
 
     private boolean gameIsOver(){
-        return wordToGuess.equals(letterLabelsToString()) || hangmanCounter == 6;
+        return wordToGuess.equals(letterLabelsToString()) || hangmanCounter == 7;
     }
 
     private void makeLetterVisible(String c){
