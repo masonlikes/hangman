@@ -289,7 +289,6 @@ public class SelfDeletingButton extends AppCompatActivity {
 //        String randomWord = returnRandomWord();
 //        textViewToChange.setText(randomWord);
         double randoWordDiff = WordDifficulty.getWordDiff(randomWord);
-        Toast.makeText(getApplicationContext(), "WordDiff: "+randoWordDiff, Toast.LENGTH_SHORT).show();
 
         return randomWord;
     }
