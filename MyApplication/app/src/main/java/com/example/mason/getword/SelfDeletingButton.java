@@ -294,6 +294,9 @@ public class SelfDeletingButton extends AppCompatActivity {
     }
 
     private void changeText(){
+        Intent i = new Intent(getBaseContext(), SelfDeletingButton.class);
+        i.putExtra("WORD", getRandomWord());
+        String word = getIntent().getStringExtra("WORD");
         word_to_guess.setText(getRandomWord());
     }
 
