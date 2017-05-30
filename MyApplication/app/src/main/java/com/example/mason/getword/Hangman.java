@@ -22,7 +22,7 @@ import java.util.Random;
 import static android.R.attr.id;
 import static com.example.mason.getword.R.id.word_text;
 
-public class SelfDeletingButton extends AppCompatActivity {
+public class Hangman extends AppCompatActivity {
 
     final static int letter_id_base = 10000;
     final static int keyboard_id_base = 20000;
