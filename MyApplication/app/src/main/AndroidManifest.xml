@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SelfDeletingButton"
-            android:label="@string/title_activity_self_deleting_button"
+            android:name=".Hangman"
+            android:label="Hangman"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
