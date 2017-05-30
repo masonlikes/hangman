@@ -294,10 +294,13 @@ public class Hangman extends AppCompatActivity {
     }
 
     private void changeText(){
-        Intent i = new Intent(getBaseContext(), SelfDeletingButton.class);
+        Intent i = new Intent(getBaseContext(), Hangman.class);
         i.putExtra("WORD", getRandomWord());
+
+
+        /* take the above code and it's related methods and put them into the main menu activity */
         String word = getIntent().getStringExtra("WORD");
-        word_to_guess.setText(getRandomWord());
+        word_to_guess.setText(word);
     }
 
     private void updateHeight(View view) {
