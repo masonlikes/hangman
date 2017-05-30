@@ -8,7 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context="com.example.mason.getword.SelfDeletingButton"
+    tools:context="com.example.mason.getword.Hangman"
     tools:showIn="@layout/activity_self_deleting_button">
 
     <ImageView
