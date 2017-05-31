@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -81,13 +82,13 @@ public class Hangman extends AppCompatActivity {
 //        LinearLayout layout = (LinearLayout)findViewById(R.id.LetterContainer);
         layout.setId(' '+letter_id_base);
         for(int i = 0; i < str.length(); i++){
-            String upperStr = str.toUpperCase();
-            letter = new TextView(this);
-            letter.setText(str.charAt(i)+"");
-            letter.setTextSize(30);
+//            String upperStr = str.toUpperCase();
+//            letter.setText(str.charAt(i)+"");
 //            letter.setId(upperStr.charAt(i));
+            letter = new TextView(this);
+            letter.setTextSize(30);
             letter.setId(letter_id_base+i);
-
+            letter.setText("_");
             letter.setPadding(10, 10, 10, 10);
 
             layout.addView(letter);
@@ -247,7 +248,19 @@ public class Hangman extends AppCompatActivity {
             fadeLetters(v);
 
             //see if they won
+            ViewGroup parent = (ViewGroup) findViewById(R.id.LetterContainer);
+            StringBuilder sb = new StringBuilder();
+            for(int i= 1; i <= parent.getChildCount(); i++){
+                TextView letter = (TextView) findViewById(letter_id_base+i);
+                sb.append(letter.getText());
+            }
+
 //            Toast.makeText(getApplicationContext(), "CHECK WIN CONDITIONS", Toast.LENGTH_SHORT).show();
+            String answer = getIntent().getStringExtra("WORD");
+            Toast.makeText(getApplicationContext(), sb.toString() + "::" + answer, Toast.LENGTH_SHORT).show();
+            if(sb.toString().equalsIgnoreCase(answer)){
+                Toast.makeText(getApplicationContext(), "YOU WIN!", Toast.LENGTH_SHORT).show();
+            }
 
             if(gameIsOver()){
                 gameOverScreen();
