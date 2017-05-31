@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static android.R.attr.gravity;
 import static android.R.attr.id;
 import static com.example.mason.getword.R.id.LetterContainer;
 import static com.example.mason.getword.R.id.word_text;
@@ -82,7 +83,9 @@ public class Hangman extends AppCompatActivity {
         for(int i = 0; i < str.length(); i++){
             String upperStr = str.toUpperCase();
             letter = new TextView(this);
-            letter.setText("_");
+            letter.setText(str.charAt(i)+"");
+            letter.setTextSize(30);
+//            letter.setId(upperStr.charAt(i));
             letter.setId(letter_id_base+i);
 
             letter.setPadding(10, 10, 10, 10);
@@ -98,6 +101,7 @@ public class Hangman extends AppCompatActivity {
     public void generateKeyboard(){
         used_letters = new TextView(this);
         used_letters.setText(getApplicationContext().getString(R.string.used_letters, "None!"));
+        used_letters.setTextSize(22);
         used = new ArrayList<String>();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -188,6 +192,7 @@ public class Hangman extends AppCompatActivity {
 
         ll.addView(reset_button);
         ll.addView(hint_button);
+        ll.setGravity(Gravity.CENTER);
         container.addView(ll);
     }
 
