@@ -22,4 +22,11 @@
 
     <include layout="@layout/content_self_deleting_button" />
 
+    <LinearLayout
+        android:id="@+id/LetterContainer"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </LinearLayout>
+
 </android.support.design.widget.CoordinatorLayout>

@@ -21,6 +21,7 @@ import java.util.Random;
 
 import static android.R.attr.gravity;
 import static android.R.attr.id;
+import static com.example.mason.getword.R.id.LetterContainer;
 import static com.example.mason.getword.R.id.word_text;
 
 public class Hangman extends AppCompatActivity {
@@ -69,6 +70,15 @@ public class Hangman extends AppCompatActivity {
     private void makeLetterLabels(String str){
         TextView letter = null;
         LinearLayout layout = new LinearLayout(this);
+
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
+        lp.gravity = Gravity.CENTER;
+        layout.setLayoutParams(lp);
+
+//        LinearLayout layout = (LinearLayout)findViewById(R.id.LetterContainer);
         layout.setId(' '+letter_id_base);
         for(int i = 0; i < str.length(); i++){
             String upperStr = str.toUpperCase();
@@ -77,8 +87,13 @@ public class Hangman extends AppCompatActivity {
             letter.setTextSize(30);
 //            letter.setId(upperStr.charAt(i));
             letter.setId(letter_id_base+i);
-            letter.setVisibility(View.INVISIBLE);
+
+            letter.setPadding(10, 10, 10, 10);
+
             layout.addView(letter);
+//            letter.setText(str.charAt(i)+"");
+//            letter.setId(upperStr.charAt(i));
+//            letter.setVisibility(View.INVISIBLE);
         }
         container.addView(layout);
     }
@@ -259,9 +274,14 @@ public class Hangman extends AppCompatActivity {
     private void makeLetterVisible(String c){
         String wurd = word_to_guess.getText().toString().toUpperCase();
         int i = wurd.indexOf(c);
-        while(i != -1){
-            findViewById(letter_id_base+i).setVisibility(View.VISIBLE);
-            i = wurd.indexOf(c, i+1);
+        String letter = "";
+        if(i > -1){
+            letter = (""+wurd.charAt(i)+"").toUpperCase();
+            while(i != -1){
+                TextView view = (TextView)findViewById(letter_id_base+i);
+                view.setText(letter);
+                i = wurd.indexOf(c, i+1);
+            }
         }
     }
 
