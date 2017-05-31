@@ -242,7 +242,7 @@ public class Hangman extends AppCompatActivity {
             fadeLetters(v);
 
             //see if they won
-            Toast.makeText(getApplicationContext(), "CHECK WIN CONDITIONS", Toast.LENGTH_SHORT);
+//            Toast.makeText(getApplicationContext(), "CHECK WIN CONDITIONS", Toast.LENGTH_SHORT).show();
 
             if(gameIsOver()){
                 gameOverScreen();
