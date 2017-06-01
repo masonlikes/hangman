@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 //            letter.setText(str.charAt(i)+"");
 //            letter.setId(upperStr.charAt(i));
             letter = new TextView(this);
-            letter.setTextSize(30);
+            letter.setTextSize(25);
             letter.setId(letter_id_base+i);
             letter.setText("_");
             letter.setPadding(10, 10, 10, 10);
