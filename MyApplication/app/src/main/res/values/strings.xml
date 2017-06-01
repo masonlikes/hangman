@@ -15,4 +15,5 @@
     <string name="main_menu">Main Menu</string>
     <string name="victory">You Won!</string>
     <string name="defeat">You Lost!</string>
+    <string name="word">The word was: %s</string>
 </resources>
