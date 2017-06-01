@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         word_to_guess.setText(wordToGuess);
 //        word_to_guess.setText(word);
         container = (LinearLayout)findViewById(R.id.container);
-        container.addView(word_to_guess);
+        //container.addView(word_to_guess);
 
         makeLetterLabels(wordToGuess);
     }
@@ -223,6 +223,21 @@ public class MainActivity extends AppCompatActivity {
         Button holder = (Button) container.findViewById(strLetter.toUpperCase().charAt(0)+keyboard_id_base);
         makeLetterVisible(strLetter.toUpperCase());
         fadeLetters(holder);
+
+        /**/
+
+        if(letterLabelsToString().equalsIgnoreCase(wordToGuess)){
+            Log.i("MyApp", "GAME OVER");
+            Toast.makeText(getBaseContext(), "GAME OVER!", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), GameOverActivity.class);
+            i.putExtra("Difficulty", getIntent().getIntExtra("Difficulty", 1));
+            i.putExtra("victory", true);
+            startActivity(i);
+        }
+
+        if(gameIsOver()){
+            gameOverScreen();
+        }
     }
 
     public void setupKeyboardButton(Button btn){
