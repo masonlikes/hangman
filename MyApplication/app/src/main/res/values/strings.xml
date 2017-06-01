@@ -7,13 +7,7 @@
     <string name="title_hangman">Hangman</string>
     <string name="game_over">Game Over!</string>
     <string name="play_again">Play Again?</string>
-<<<<<<< HEAD
-    <string name="hard">Hard</string>
-    <string name="easy">Easy</string>
-    <string name="medium">Medium</string>
     <string name="welcome_to_hangman_select_a_difficulty">Welcome to Hangman. Select a difficulty</string>
-    <string name="main_menu">Main Menu</string>
-=======
     <string name="easy">EASY</string>
     <string name="medium">MEDIUM</string>
     <string name="hard">HARD</string>
@@ -21,5 +15,4 @@
     <string name="main_menu">Main Menu</string>
     <string name="victory">You Won!</string>
     <string name="defeat">You Lost!</string>
->>>>>>> 6b08f128abf5aa3f2a3a3ab05f54cba3ee6dbebf
 </resources>

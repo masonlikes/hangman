@@ -1,3 +1,4 @@
+
 package com.example.mason.getword;
 
 import android.content.Intent;
@@ -15,10 +16,6 @@ import java.util.Random;
 
 public class Hangman extends AppCompatActivity {
 
-    final static int letter_id_base = 10000;
-    final static int keyboard_id_base = 20000;
-
-    boolean firstTime = true;
     Random rand = new Random();
 
     final static int MEDIUM = 150, HARD = 300;
@@ -30,53 +27,7 @@ public class Hangman extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        makeBoth();
-    }
-
-    private void makeBoth(){
-        makeWordToGuess();
-        generateKeyboard();
-    }
-
-
-    private void makeWordToGuess(){
-        wordToGuess = getRandomWord();
-        setContentView(R.layout.activity_self_deleting_button);
-        word_to_guess = new TextView(this);
-        word_to_guess.setText(wordToGuess);
-        container = (LinearLayout)findViewById(R.id.container);
-
-        container.addView(word_to_guess);
-
-        makeLetterLabels(wordToGuess);
-    }
-
-    private void makeLetterLabels(String str){
-        TextView letter = null;
-        LinearLayout layout = new LinearLayout(this);
-        layout.setId(' '+letter_id_base);
-        for(int i = 0; i < str.length(); i++){
-            String upperStr = str.toUpperCase();
-            letter = new TextView(this);
-            letter.setText(str.charAt(i)+"");
-//            letter.setId(upperStr.charAt(i));
-            letter.setId(letter_id_base+i);
-            letter.setVisibility(View.INVISIBLE);
-            layout.addView(letter);
-        }
-        container.addView(layout);
-    }
-
-    public void generateKeyboard(){
-        used_letters = new TextView(this);
-        used_letters.setText(getApplicationContext().getString(R.string.used_letters, "None!"));
-        used = new ArrayList<String>();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-=======
         setContentView(R.layout.main_menu);
->>>>>>> 6b08f128abf5aa3f2a3a3ab05f54cba3ee6dbebf
 
         loadWords();
 

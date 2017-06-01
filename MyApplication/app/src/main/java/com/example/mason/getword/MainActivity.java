@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String currWord = letterLabelsToString();
-               // boolean equal = wordToGuess.equals(currWord);
+                // boolean equal = wordToGuess.equals(currWord);
                 if(numGuesses < currWord.length()/2) {
                     giveHint(v);
                     numGuesses++;
@@ -269,10 +269,11 @@ public class MainActivity extends AppCompatActivity {
             fadeLetters(v);
 
             if(letterLabelsToString().equalsIgnoreCase(wordToGuess)){
-                Log.i("MyApp", "GAME OVER");
-                Toast.makeText(getBaseContext(), "GAME OVER!", Toast.LENGTH_SHORT).show();
+//                Log.i("MyApp", "GAME OVER");
+//                Toast.makeText(getBaseContext(), "GAME OVER!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(), GameOverActivity.class);
                 i.putExtra("Difficulty", getIntent().getIntExtra("Difficulty", 1));
+                Log.i("word", wordToGuess);
                 i.putExtra("WORD", wordToGuess);
                 i.putExtra("victory", true);
                 startActivity(i);
@@ -291,9 +292,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void gameOverScreen(){
-        Intent intent = new Intent(this, GameOverActivity.class);
+//        Intent intent = new Intent(this, GameOverActivity.class);
+        Intent i = new Intent(getApplicationContext(), GameOverActivity.class);
+        i.putExtra("Difficulty", getIntent().getIntExtra("Difficulty", 1));
+//        Log.i("word", wordToGuess);
+        i.putExtra("WORD", wordToGuess);
+        i.putExtra("victory", false);
+        startActivity(i);
 
-        startActivity(intent);
+
+//        startActivity(intent);
     }
 
     private boolean gameIsOver(){

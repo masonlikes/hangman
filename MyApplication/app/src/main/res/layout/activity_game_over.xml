@@ -33,7 +33,6 @@
         android:id="@+id/play_again_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:text="@string/play_again"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
@@ -56,9 +55,6 @@
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="@+id/play_again_button"
         android:layout_marginLeft="1560dp" />
-</android.support.constraint.ConstraintLayout>
-=======
-        android:text="@string/play_again" />
     <Button
         android:id="@+id/menuBtn"
         android:layout_width="wrap_content"
@@ -89,4 +85,3 @@
 
     </LinearLayout>
 </LinearLayout>
->>>>>>> 6b08f128abf5aa3f2a3a3ab05f54cba3ee6dbebf

@@ -14,6 +14,13 @@ public class GameOverActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
 
+        TextView status = (TextView) findViewById(R.id.status);
+        status.setText(getIntent().getBooleanExtra("victory", false)?getString(R.string.victory):getString(R.string.defeat));
+
+        TextView word = (TextView) findViewById(R.id.word);
+//        word.setText();
+        String actual = getIntent().getStringExtra("WORD");
+        word.setText(getString(R.string.word, actual));
         Button playAgainBtn = (Button) findViewById(R.id.play_again_button);
         Button menuBtn = (Button) findViewById(R.id.menuBtn);
 
@@ -41,12 +48,6 @@ public class GameOverActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Hangman.class);
         intent.putExtra("PlayAgain", true);
         intent.putExtra("Difficulty", intent.getIntExtra("Difficulty", 1));
-        startActivity(intent);
-    }
-
-    private void mainMenu(){
-        Intent intent = new Intent(this, MainMenuActivity.class);
-
         startActivity(intent);
     }
 }
