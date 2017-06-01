@@ -23,6 +23,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     final static int letter_id_base = 10000;
     final static int keyboard_id_base = 20000;
+    private int numGuesses;
 
     Random rand = new Random();
     TextView used_letters;
@@ -181,14 +182,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String currWord = letterLabelsToString();
-                boolean equal = wordToGuess.equals(currWord);
-                if(!equal) {
+               // boolean equal = wordToGuess.equals(currWord);
+                if(numGuesses < currWord.length()/2) {
                     giveHint(v);
+                    numGuesses++;
                 }else{
                     Toast.makeText(v.getContext(), " No more hints available ", Toast.LENGTH_SHORT).show();
                 }
 
                 if(gameIsOver()){
+                    numGuesses=0;
                     gameOverScreen();
                 }
             }
