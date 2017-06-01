@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context="com.example.mason.getword.Hangman"
-    tools:showIn="@layout/activity_hangman">
+    tools:showIn="@layout/game_view">
 
     <ImageView
         android:id="@+id/imageView1"
