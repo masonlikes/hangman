@@ -20,7 +20,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_self_deleting_button" />
+    <include layout="@layout/content_hangman" />
 
     <LinearLayout
         android:id="@+id/LetterContainer"

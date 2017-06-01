@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,11 +18,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import static android.R.attr.gravity;
-import static android.R.attr.id;
-import static com.example.mason.getword.R.id.LetterContainer;
-import static com.example.mason.getword.R.id.word_text;
 
 public class Hangman extends AppCompatActivity {
 
@@ -38,6 +32,8 @@ public class Hangman extends AppCompatActivity {
     LinearLayout container, TopRow, MidRow, BotRow;
     Button reset_button;
     Button hint_button;
+
+    private String word = null;
 
     final String[]
             TopLetters = { "Q","W","E","R","T","Y","U","I","O","P" },
@@ -58,7 +54,7 @@ public class Hangman extends AppCompatActivity {
 
     private void makeWordToGuess(){
         wordToGuess = getRandomWord();
-        setContentView(R.layout.activity_self_deleting_button);
+        setContentView(R.layout.activity_hangman);
         word_to_guess = new TextView(this);
         word_to_guess.setText(wordToGuess);
         container = (LinearLayout)findViewById(R.id.container);
@@ -81,7 +77,7 @@ public class Hangman extends AppCompatActivity {
 
 //        LinearLayout layout = (LinearLayout)findViewById(R.id.LetterContainer);
         layout.setId(' '+letter_id_base);
-        for(int i = 0; i < str.length(); i++){
+        for(int i = 1; i <= str.length(); i++){
 //            String upperStr = str.toUpperCase();
 //            letter.setText(str.charAt(i)+"");
 //            letter.setId(upperStr.charAt(i));
@@ -248,17 +244,20 @@ public class Hangman extends AppCompatActivity {
             fadeLetters(v);
 
             //see if they won
-            ViewGroup parent = (ViewGroup) findViewById(R.id.LetterContainer);
+            LinearLayout parent = (LinearLayout) findViewById(R.id.LetterContainer);
             StringBuilder sb = new StringBuilder();
+            int cc = parent.getChildCount();
+            Toast.makeText(getBaseContext(), cc, Toast.LENGTH_SHORT).show();
             for(int i= 1; i <= parent.getChildCount(); i++){
                 TextView letter = (TextView) findViewById(letter_id_base+i);
+                Toast.makeText(getApplicationContext(), letter.getText(), Toast.LENGTH_SHORT).show();
                 sb.append(letter.getText());
             }
 
 //            Toast.makeText(getApplicationContext(), "CHECK WIN CONDITIONS", Toast.LENGTH_SHORT).show();
-            String answer = getIntent().getStringExtra("WORD");
-            Toast.makeText(getApplicationContext(), sb.toString() + "::" + answer, Toast.LENGTH_SHORT).show();
-            if(sb.toString().equalsIgnoreCase(answer)){
+//            String answer = getIntent().getStringExtra("WORD");
+            Toast.makeText(getApplicationContext(), sb.toString() + "::" + word, Toast.LENGTH_SHORT).show();
+            if(sb.toString().equalsIgnoreCase(word)){
                 Toast.makeText(getApplicationContext(), "YOU WIN!", Toast.LENGTH_SHORT).show();
             }
 
@@ -336,7 +335,7 @@ public class Hangman extends AppCompatActivity {
 
 
         /* take the above code and it's related methods and put them into the main menu activity */
-        String word = getIntent().getStringExtra("WORD");
+        word = getIntent().getStringExtra("WORD");
         word_to_guess.setText(word);
     }
 

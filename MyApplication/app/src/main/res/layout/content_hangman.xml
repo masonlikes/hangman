@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context="com.example.mason.getword.Hangman"
-    tools:showIn="@layout/activity_self_deleting_button">
+    tools:showIn="@layout/activity_hangman">
 
     <ImageView
         android:id="@+id/imageView1"
