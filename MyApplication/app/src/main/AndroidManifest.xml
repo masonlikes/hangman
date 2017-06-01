@@ -11,24 +11,14 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Hangman"
-            android:label="Hangman"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="Hangman">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                 <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
-        <activity android:name=".GameOverActivity">
-            <!--<intent-filter>-->
-
-            <!--</intent-filter>-->
-        </activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".GameOverActivity"/>
     </application>
 
 </manifest>

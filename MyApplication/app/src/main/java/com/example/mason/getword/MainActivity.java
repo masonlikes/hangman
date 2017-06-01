@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String currWord = letterLabelsToString();
-               // boolean equal = wordToGuess.equals(currWord);
+                // boolean equal = wordToGuess.equals(currWord);
                 if(numGuesses < currWord.length()/2) {
                     giveHint(v);
                     numGuesses++;
