@@ -4,7 +4,14 @@
     <string name="reset">Reset</string>
     <string name="hint">Hint</string>
     <string name="used_letters">Used Letters: %1$s</string>
-    <string name="title_activity_self_deleting_button">SelfDeletingButton</string>
+    <string name="title_hangman">Hangman</string>
     <string name="game_over">Game Over!</string>
     <string name="play_again">Play Again?</string>
+    <string name="easy">EASY</string>
+    <string name="medium">MEDIUM</string>
+    <string name="hard">HARD</string>
+    <string name="start">START</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="victory">You Won!</string>
+    <string name="defeat">You Lost!</string>
 </resources>
