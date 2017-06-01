@@ -15,13 +15,10 @@ import java.util.Random;
 
 public class Hangman extends AppCompatActivity {
 
-<<<<<<< HEAD
     final static int letter_id_base = 10000;
     final static int keyboard_id_base = 20000;
 
     boolean firstTime = true;
-=======
->>>>>>> 6b08f128abf5aa3f2a3a3ab05f54cba3ee6dbebf
     Random rand = new Random();
 
     final static int MEDIUM = 150, HARD = 300;
@@ -33,13 +30,6 @@ public class Hangman extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
-        if(firstTime) {
-            firstTime = false;
-            Intent intent = new Intent(this, MainMenuActivity.class);
-            startActivity(intent);
-        }
-
         makeBoth();
     }
 
