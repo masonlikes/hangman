@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             letter.setTextSize(25);
             letter.setId(letter_id_base+i);
             letter.setText("_");
-            letter.setPadding(10, 10, 10, 10);
+            letter.setPadding(5, 5, 5, 5);
 
             layout.addView(letter);
 //            letter.setText(str.charAt(i)+"");
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
             Log.i("MyApp", "GAME OVER");
             Toast.makeText(getBaseContext(), "GAME OVER!", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(getApplicationContext(), GameOverActivity.class);
-            i.putExtra("Difficulty", getIntent().getIntExtra("Difficulty", 1));
+            i.putExtra("diff", getIntent().getIntExtra("diff", 1));
             i.putExtra("victory", true);
             startActivity(i);
         }
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
 //                Log.i("MyApp", "GAME OVER");
 //                Toast.makeText(getBaseContext(), "GAME OVER!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(), GameOverActivity.class);
-                i.putExtra("Difficulty", getIntent().getIntExtra("Difficulty", 1));
+                i.putExtra("diff", getIntent().getIntExtra("diff", 1));
                 Log.i("word", wordToGuess);
                 i.putExtra("WORD", wordToGuess);
                 i.putExtra("victory", true);
@@ -294,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
     private void gameOverScreen(){
 //        Intent intent = new Intent(this, GameOverActivity.class);
         Intent i = new Intent(getApplicationContext(), GameOverActivity.class);
-        i.putExtra("Difficulty", getIntent().getIntExtra("Difficulty", 1));
+        i.putExtra("diff", getIntent().getIntExtra("diff", 1));
 //        Log.i("word", wordToGuess);
         i.putExtra("WORD", wordToGuess);
         i.putExtra("victory", false);

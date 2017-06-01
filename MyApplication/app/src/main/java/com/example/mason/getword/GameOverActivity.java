@@ -3,6 +3,7 @@ package com.example.mason.getword;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -47,7 +48,9 @@ public class GameOverActivity extends AppCompatActivity {
     private void playAgain(){
         Intent intent = new Intent(this, Hangman.class);
         intent.putExtra("PlayAgain", true);
-        intent.putExtra("Difficulty", intent.getIntExtra("Difficulty", 1));
+        int diff = getIntent().getIntExtra("diff", -1);
+        Log.i("Diff", ""+diff);
+        intent.putExtra("diff", diff);
         startActivity(intent);
     }
 }

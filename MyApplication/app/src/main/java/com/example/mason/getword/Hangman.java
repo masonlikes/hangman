@@ -32,11 +32,11 @@ public class Hangman extends AppCompatActivity {
 
         /* Check if they want to play again */
         if(getIntent().getBooleanExtra("PlayAgain", false)){
-            int difficulty = getIntent().getIntExtra("Difficulty", 1);
+            int difficulty = getIntent().getIntExtra("diff", -1);
+            Log.i("diff", ""+difficulty);
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
-
-            i.putExtra("WORD", getRandomWord());
-            i.putExtra("Difficulty", difficulty);
+            i.putExtra("WORD", getRandomWord(difficulty));
+            i.putExtra("diff", difficulty);
             startActivity(i);
         }
 
@@ -46,8 +46,8 @@ public class Hangman extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                i.putExtra("WORD", getRandomWord(getIntent().getIntExtra("Difficulty", -1)));
-                i.putExtra("Difficulty", -1);
+                i.putExtra("WORD", getRandomWord(getIntent().getIntExtra("diff", -1)));
+                i.putExtra("diff", -1);
                 startActivity(i);
             }
         });
@@ -72,7 +72,7 @@ public class Hangman extends AppCompatActivity {
         public void onClick(View v) {
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
             i.putExtra("WORD", getRandomWord(d));
-            i.putExtra("Difficulty", d);
+            i.putExtra("diff", d);
             startActivity(i);
         }
     }
