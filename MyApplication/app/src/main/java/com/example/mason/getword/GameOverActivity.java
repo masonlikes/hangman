@@ -17,6 +17,9 @@ public class GameOverActivity extends AppCompatActivity {
         TextView status = (TextView) findViewById(R.id.status);
         status.setText(getIntent().getBooleanExtra("victory", false)?getString(R.string.victory):getString(R.string.defeat));
 
+        TextView word = (TextView) findViewById(R.id.word);
+        word.setText(getIntent().getStringExtra("WORD"));
+
         Button playAgainBtn = (Button) findViewById(R.id.play_again_button);
         Button menuBtn = (Button) findViewById(R.id.menuBtn);
 
