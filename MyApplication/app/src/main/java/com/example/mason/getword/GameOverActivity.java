@@ -13,9 +13,10 @@ public class GameOverActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
 
-        Button button = (Button) findViewById(R.id.play_again_button);
+        Button play_again_button = (Button) findViewById(R.id.play_again_button);
+        Button main_menu_button = (Button) findViewById(R.id.main_menu_button);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        play_again_button.setOnClickListener(new View.OnClickListener() {
 
             @Override
 
@@ -26,10 +27,27 @@ public class GameOverActivity extends AppCompatActivity {
             }
 
         });
+        main_menu_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+
+                mainMenu();
+
+            }
+
+        });
     }
 
     private void playAgain(){
         Intent intent = new Intent(this, Hangman.class);
+
+        startActivity(intent);
+    }
+
+    private void mainMenu(){
+        Intent intent = new Intent(this, MainMenuActivity.class);
 
         startActivity(intent);
     }

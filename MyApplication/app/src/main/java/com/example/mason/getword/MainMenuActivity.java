@@ -1,5 +1,6 @@
 package com.example.mason.getword;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-                startGame();
+                startGame(1);
             }
 
         });
@@ -30,7 +31,7 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-                startGame();
+                startGame(2);
             }
 
         });
@@ -39,13 +40,15 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-                startGame();
+                startGame(3);
             }
 
         });
     }
 
-    private void startGame(){
+    private void startGame(int diff){
+        Intent intent = new Intent(this, Hangman.class);
 
+        startActivity(intent);
     }
 }

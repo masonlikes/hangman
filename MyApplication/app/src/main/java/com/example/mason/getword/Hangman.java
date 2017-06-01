@@ -27,6 +27,7 @@ public class Hangman extends AppCompatActivity {
     final static int letter_id_base = 10000;
     final static int keyboard_id_base = 20000;
 
+    boolean firstTime = true;
     Random rand = new Random();
     TextView used_letters;
     String wordToGuess;
@@ -44,6 +45,12 @@ public class Hangman extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(firstTime) {
+            firstTime = false;
+            Intent intent = new Intent(this, MainMenuActivity.class);
+            startActivity(intent);
+        }
+
         makeBoth();
     }
 
