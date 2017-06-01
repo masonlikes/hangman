@@ -20,17 +20,16 @@ public class GameOverActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View v) {
-
                 playAgain();
-
             }
 
         });
     }
 
     private void playAgain(){
-        Intent intent = new Intent(this, MainActivity.class);
-
+        Intent intent = new Intent(this, Hangman.class);
+        intent.putExtra("PlayAgain", true);
+        intent.putExtra("Difficulty", intent.getIntExtra("Difficulty", 1));
         startActivity(intent);
     }
 }

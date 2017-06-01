@@ -19,14 +19,23 @@ public class Hangman extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
+        if(getIntent().getBooleanExtra("PlayAgain", false)){
+            int difficulty = getIntent().getIntExtra("Difficulty", 1);
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+
+            i.putExtra("WORD", getRandomWord());
+            i.putExtra("Difficulty", difficulty);
+            startActivity(i);
+        }
+
         Button start = (Button) findViewById(R.id.startbtn);
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
-
                 i.putExtra("WORD", getRandomWord());
+                i.putExtra("Difficulty", 1);
                 startActivity(i);
             }
         });
