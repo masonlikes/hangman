@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         word_to_guess.setText(wordToGuess);
 //        word_to_guess.setText(word);
         container = (LinearLayout)findViewById(R.id.container);
-        container.addView(word_to_guess);
+        //container.addView(word_to_guess);
 
         makeLetterLabels(wordToGuess);
     }
