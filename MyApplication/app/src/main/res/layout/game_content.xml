@@ -9,11 +9,11 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context="com.example.mason.getword.Hangman"
-    tools:showIn="@layout/activity_self_deleting_button">
+    tools:showIn="@layout/game_view">
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="267dp"
-        android:layout_height="264dp"
+        android:layout_width="229dp"
+        android:layout_height="203dp"
         android:src="@drawable/hangman1" />
 </LinearLayout>

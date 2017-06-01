@@ -17,10 +17,23 @@
             android:label="Hangman">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+=======
+        <activity android:name=".MainActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                 <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".GameOverActivity">
+            <!--<intent-filter>-->
+
+            <!--</intent-filter>-->
+        </activity>
+>>>>>>> 6b08f128abf5aa3f2a3a3ab05f54cba3ee6dbebf
     </application>
 
 </manifest>
