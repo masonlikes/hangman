@@ -270,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "GAME OVER!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(), GameOverActivity.class);
                 i.putExtra("Difficulty", getIntent().getIntExtra("Difficulty", 1));
+                i.putExtra("WORD", wordToGuess);
                 i.putExtra("victory", true);
                 startActivity(i);
             }

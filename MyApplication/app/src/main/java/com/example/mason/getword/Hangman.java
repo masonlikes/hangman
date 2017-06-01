@@ -13,13 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.example.mason.getword.WordDifficulty;
-
 public class Hangman extends AppCompatActivity {
 
     Random rand = new Random();
 
-    final static int EASY = 150, MEDIUM = 300, HARD = 450;
+    final static int MEDIUM = 150, HARD = 300;
 
     List<String> EasyWords = new ArrayList<>();
     List<String> MediumWords = new ArrayList<>();
@@ -108,11 +106,11 @@ public class Hangman extends AppCompatActivity {
                 double diff = WordDifficulty.getWordDiff(word);
                 Log.i("Word", word+"");
                 Log.i("Diff", diff+"");
-                if(diff < EASY){
+                if(diff < MEDIUM){
                     EasyWords.add(word);
-                } else if(diff >= EASY && diff < MEDIUM ) {
+                } else if(diff >= MEDIUM && diff < HARD) {
                     MediumWords.add(word);
-                } else if(diff >= MEDIUM){
+                } else if(diff >= HARD){
                     HardWords.add(word);
                 } else {
                     throw new IllegalStateException();
