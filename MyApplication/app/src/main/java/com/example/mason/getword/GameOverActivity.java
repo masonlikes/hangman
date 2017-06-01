@@ -29,7 +29,7 @@ public class GameOverActivity extends AppCompatActivity {
     }
 
     private void playAgain(){
-        Intent intent = new Intent(this, Hangman.class);
+        Intent intent = new Intent(this, MainActivity.class);
 
         startActivity(intent);
     }

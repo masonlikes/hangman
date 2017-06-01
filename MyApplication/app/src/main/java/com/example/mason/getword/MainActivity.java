@@ -253,6 +253,7 @@ public class MainActivity extends AppCompatActivity {
             if(letterLabelsToString().equalsIgnoreCase(wordToGuess)){
                 Log.i("MyApp", "GAME OVER");
                 Toast.makeText(getBaseContext(), "GAME OVER!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), GameOverActivity.class));
             }
 
             if(gameIsOver()){

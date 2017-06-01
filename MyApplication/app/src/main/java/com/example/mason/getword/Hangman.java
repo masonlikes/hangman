@@ -26,10 +26,21 @@ public class Hangman extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
 
-                i.putExtra("WORD", "testword");
+                i.putExtra("WORD", getRandomWord());
                 startActivity(i);
             }
         });
+
+
+        Button easy = (Button) findViewById(R.id.easy_game);
+        Button medium = (Button) findViewById(R.id.medium_game);
+        Button hard = (Button) findViewById(R.id.hard_game);
+
+        //add click listeners here
+    }
+
+    private String getRandomWord(int difficulty){
+        return "";
     }
 
     private String getRandomWord(){
