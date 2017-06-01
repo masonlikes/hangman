@@ -1,6 +1,7 @@
 package com.example.mason.getword;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         makeBoth();
     }
 
@@ -182,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String currWord = letterLabelsToString();
-               // boolean equal = wordToGuess.equals(currWord);
+                // boolean equal = wordToGuess.equals(currWord);
                 if(numGuesses < currWord.length()/2) {
                     giveHint(v);
                     numGuesses++;

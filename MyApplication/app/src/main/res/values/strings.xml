@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GetWord</string>
+    <string name="app_name">Hangman</string>
     <string name="get_new_word">Get New Word</string>
     <string name="reset">Reset</string>
     <string name="hint">Hint</string>
@@ -7,6 +7,7 @@
     <string name="title_hangman">Hangman</string>
     <string name="game_over">Game Over!</string>
     <string name="play_again">Play Again?</string>
+    <string name="welcome_to_hangman_select_a_difficulty">Welcome to Hangman. Select a difficulty</string>
     <string name="easy">EASY</string>
     <string name="medium">MEDIUM</string>
     <string name="hard">HARD</string>
