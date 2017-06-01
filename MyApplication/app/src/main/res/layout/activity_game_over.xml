@@ -16,11 +16,22 @@
         android:layout_height="wrap_content"
         android:text="@string/game_over" />
 
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/play_again_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/play_again" />
+    <Button
+        android:id="@+id/menuBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_menu" />
         <!--android:layout_marginEnd="124dp"-->
         <!--android:layout_marginRight="124dp"-->
         <!--app:layout_constraintBottom_toBottomOf="parent"-->

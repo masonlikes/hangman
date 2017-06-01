@@ -19,6 +19,8 @@ public class Hangman extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
+
+        /* Check if they want to play again */
         if(getIntent().getBooleanExtra("PlayAgain", false)){
             int difficulty = getIntent().getIntExtra("Difficulty", 1);
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
