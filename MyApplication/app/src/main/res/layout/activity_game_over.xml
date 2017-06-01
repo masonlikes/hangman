@@ -33,6 +33,31 @@
         android:id="@+id/play_again_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
+        android:text="@string/play_again"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/main_menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_menu"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="-522dp"
+        app:layout_constraintTop_toBottomOf="@+id/play_again_button"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/play_again_button"
+        android:layout_marginLeft="1560dp" />
+</android.support.constraint.ConstraintLayout>
+=======
         android:text="@string/play_again" />
     <Button
         android:id="@+id/menuBtn"
@@ -64,3 +89,4 @@
 
     </LinearLayout>
 </LinearLayout>
+>>>>>>> 6b08f128abf5aa3f2a3a3ab05f54cba3ee6dbebf
