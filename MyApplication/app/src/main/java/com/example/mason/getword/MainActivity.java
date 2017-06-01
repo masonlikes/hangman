@@ -1,6 +1,7 @@
 package com.example.mason.getword;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         makeBoth();
     }
 
@@ -90,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 //            letter.setText(str.charAt(i)+"");
 //            letter.setId(upperStr.charAt(i));
             letter = new TextView(this);
-            letter.setTextSize(30);
+            letter.setTextSize(25);
             letter.setId(letter_id_base+i);
             letter.setText("_");
             letter.setPadding(10, 10, 10, 10);
